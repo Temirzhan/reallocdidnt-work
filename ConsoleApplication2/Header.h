@@ -1,10 +1,7 @@
 #pragma once
-void SumProzMassiv(const int *Massiv, int *summ, int *proiz, int len);
-void massivShow(int *Massiv, int len);
-void SumProzMassivMnogomer(int *Massiv, int *summ, int *proiz, int len);
-void random(int*Massiv, int len);
-enum MyEnum { otr, pol, nul };
-void MassivInd(int *Start, int*End, MyEnum);
-void massivShowMnogomer(int *Massiv, int len, int len2);
-int *MassiSrednee(int *Massiv, int len, int len2, int *chet, int *nechet, int *srednee);
-int  MyCurs(int A, int B);
+void fillArray(int *pt, int len, int len2);
+void printArray(int *pt, int len, int len2);
+void realocc(int *pt, int *pt2, int len, int len2);
+void PrintMass(int *pt, int len);
+void fillArray2(int *pt, int len);
+void Ruchkami(int *pt, int len);

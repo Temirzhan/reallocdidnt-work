@@ -1,130 +1,75 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
-#include "Header.h"
-#include<iostream>
-#include<time.h>
-#include<string.h>
+#include <iostream>
+#include <time.h>
+#include <string.h>
 
-
-void SumProzMassiv(const int *Massiv, int *summ, int *proiz,int len)
+void fillArray(int *pt, int len, int len2)
 {
-	for (int i = 0 ;i< len;i++)
-	{
-		*summ += *(Massiv + i);
-	}
-	for (int i = 0;i< len;i++)
-	{
-		*proiz *= *(Massiv + i);
-	}
-}
-
-void massivShow(int *Massiv, int len)
-{
-	for (int i = 0;i< len;i++)
-	{
-		printf("A[%d]=%d\n",len, *(Massiv + i));
-	}
-
-	//зачем я здесь исполбзую безопасную работа, потоучто не обходимо получить сумму и произведение элементов массива без его изменения; 
-}
-void SumProzMassivMnogomer( int *Massiv, int *summ, int *proiz, int len)
-{
-	for (int i = 0;i< len;i++)
-	{
-		for(int j=0;j<len;j++)
-		*summ += *(Massiv + i*2+j);
-	}
-	for (int i = 0;i< len;i++)
-	{
-		for (int j = 0;j<len;j++)
-			*summ += *(Massiv + i * 2 + j);
-	}
-}
-
-void random(int*Massiv, int len)
-{
-	
-	for (int i = 0;i< len;i++)
-	{
-		 *(Massiv + i)=1+rand()%10;
-	}
-}
-
-void  MassivInd(int *Start, int*End, MyEnum t)
-{
-	int chet = 0;
-	int i = 0;
-	switch (t)
-	{
-	case 0:
-		{
-		while (Start < End)
-		{
-			if (*(Start + i) < 0)
-				chet++;
-			i++;
-		}
-		printf("Отрицательные элементы %d\n", chet);
-	}
-		break;
-	case 1:
-	{
-		while (Start < End)
-		{
-			if (*(Start++) > 0)
-				chet++;
-		}
-		printf("Положительные элементы %d\n", chet);
-	}
-	break;
-	case 2:
-	{
-		while (Start < End)
-		{
-			if (*(Start + i) == 0)
-				chet++;
-			i++;
-		}
-		printf("Нулевые элементы %d\n", chet);
-	}
-	break;
-	}
-}
-void massivShowMnogomer(int *Massiv, int len,int len2)
-{
-	for (int i = 0;i< len;i++)
-	{
-		for(int j=0;j<len2;j++)
-		printf("A[%d][%d]=%d", len,len2, *(Massiv + i * 2 + j));
-	}
-	printf("\n");
-	//зачем я здесь исполбзую безопасную работа, потоучто не обходимо получить сумму и произведение элементов массива без его изменения; 
-}
-
-int *MassiSrednee(int *Massiv, int len, int len2, int *chet, int *nechet, int *srednee)
-{
-	for (int i = 0;i< len;i++)
+	for (int i = 0;i < len;i++)
 	{
 		for (int j = 0;j < len2;j++)
 		{
-			if (*(Massiv + i * 2 + j) % 2 == 0)
-				*nechet=*nechet+1;
-
-			else
-				*chet=*chet+1;
-
-			*srednee += *(Massiv + i * 2 + j);
+			*(pt + i*len + j) = 1 + rand() % 100;
 		}
 	}
-	*srednee = *srednee / (len*len2);
-	return &*srednee;
 }
 
-int MyCurs(int A, int B)
+void fillArray2(int *pt, int len)
 {
-	if (A <= B)
+	for (int i = 0;i < len;i++)
 	{
-		return A+= MyCurs(A+1,B );
+			*(pt + i) = 1 + rand() % 100;
 	}
-	return 0;
+}
+
+
+void printArray(int *pt, int len, int len2)
+{
+	for (int i = 0;i < len;i++)
+	{
+		for (int j = 0;j < len2;j++)
+		{
+			printf("A[%d][%d]=%d", i, j, *(pt + i*len + j));
+		}
+		printf("\n");
+	}
+}
+
+void realocc(int *pt, int *pt2, int len, int len2)
+{
+	int min = *pt;
+	int count=0;
+	for (int i = 0;i < len;i++)
+	{
+		 min = 9999;
+			for (int j = 0;j < len2;j++)
+			{
+				if (*(pt + i*len + j) < min)
+				{
+					min = *(pt + i*len + j);
+				}
+			}
+			*(pt2 + count) = min;
+			count++;
+			(int*)realloc(pt2, sizeof(int)*(count+1));
+	}
+}
+
+void PrintMass(int *pt, int len)
+{
+	for (int i = 0;i < len;i++)
+	{
+			printf("A[%d]=%d\t", i, *(pt + i));
+	}
+	printf("\n");
+}
+
+void Ruchkami(int *pt, int len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		scanf("%d", (pt + i));
+	}
 }
